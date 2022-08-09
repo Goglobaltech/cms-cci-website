@@ -108,7 +108,7 @@ export default function Media() {
             endIcon={<QueueOutlinedIcon className="icon-add" />}
             className="btn-add"
           >
-            <Typography className="btn-text">Create</Typography>
+            <Typography className="btn-text">Add Media</Typography>
           </Button>
           <MediaForm
             modalTitle={"Create media"}

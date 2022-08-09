@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, TableCell, TableRow, Menu, MenuItem } from "@mui/material";
+import {
+  Button,
+  TableCell,
+  TableRow,
+  Menu,
+  MenuItem,
+  Box,
+} from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { useMutation } from "@apollo/client";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -85,7 +92,9 @@ export default function MediaRow({
         {index + 1}
       </TableCell>
       <TableCell className="body-title" width="30%">
-        <img src={`${row?.imageUrl}`} alt="Image" className="image" />
+        <Box className="container-image">
+          <img src={`${row?.imageUrl}`} alt="Image" className="image" />
+        </Box>
       </TableCell>
       <TableCell className="body-title" width="30%">
         {row?.title}

@@ -16,9 +16,26 @@
         @include mobile {
             font-size: 12px;
         }
+        .container-image {
+            width: 120px;
+            height: 120px;
+            margin: 10px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        .image {
-            width: 40%;
+            .image {
+                width: 100%;
+                border-radius: 10px;
+                transition: 0.6s;
+
+                &:hover {
+                    box-shadow: 4px 6px rgba(136, 136, 136, 0.123);
+                    border-radius: 0px;
+                    transition: 0.3s;
+                    transform: scale(1.04);
+                }
+            }
         }
     }
     .body-title-start {
@@ -78,8 +95,25 @@
             font-size: 12px;
         }
 
-        .image {
-            width: 40%;
+        .container-image {
+            width: 120px;
+            height: 120px;
+            margin: 10px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .image {
+                width: 100%;
+                border-radius: 10px;
+                transition: 0.6s;
+
+                &:hover {
+                    box-shadow: 4px 6px rgba(136, 136, 136, 0.123);
+                    border-radius: 0px;
+                    transition: 0.3s;
+                    transform: scale(1.04);
+                }
+            }
         }
     }
     .body-title-start {

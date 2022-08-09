@@ -7,9 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
-import TaskAltOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
+import NewReleasesOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
 import { useNavigate } from "react-router-dom";
 //components
 import "./cleaningmaterailsrow.scss";
@@ -32,7 +30,6 @@ export default function CleaningMaterailsRow({
     });
   };
   const [productsId, setProductsId] = useState("");
-  const [checkButton, setCheckButton] = useState("");
   //menu
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
@@ -42,13 +39,6 @@ export default function CleaningMaterailsRow({
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
-
-  // const theme = createTheme({
-  //   status: {
-  //     danger: orange[500],
-  //     warning: yellow[500],
-  //   },
-  // });
 
   //Delete
   const [openDelete, setOpenDelete] = useState(false);
@@ -109,23 +99,70 @@ export default function CleaningMaterailsRow({
       imageSlideCenter: row?.imageSlideCenter ? row?.imageSlideCenter : "",
       imageSlideLeft: row?.imageSlideLeft ? row?.imageSlideLeft : "",
       imageSlideRight: row?.imageSlideRight ? row?.imageSlideRight : "",
-      benefits: row?.benefits,
-      discriptionBenefitsList: row?.discriptionBenefitsList,
+      benefits: row?.benefits?.map((e) => ({
+        imageBenefits: e?.imageBenefits,
+        key: e?.key,
+        subTitleBenefits: e?.subTitleBenefits,
+        subTitleBenefitsKH: e?.subTitleBenefitsKH,
+      })),
+      discriptionBenefitsList: row?.discriptionBenefitsList?.map((e) => ({
+        benefitsList: e?.benefitsList,
+        benefitsListKH: e?.benefitsListKH,
+        key: e?.key,
+      })),
+      mainProduct: row?.mainProduct === false ? true : false,
+      newProduct: row?.newProduct,
+      remark: "",
     };
     // console.log("newVales::", newVales);
     updateProduct({
       variables: {
+        id: row?._id,
         productEdit: {
           ...newVales,
-          mainProduct: checkButton === "New" ? true : row?.mainProduct,
-          newProduct: checkButton === "Main" ? true : row?.newProduct,
         },
+      },
+    });
+  };
+
+  const handleNew = () => {
+    const newVales = {
+      categoryId: row?.categoryId?._id,
+      title: row?.title,
+      titleKH: row?.titleKH,
+      discription: row?.discription,
+      discriptionKH: row?.discriptionKH,
+      imageSlideCenter: row?.imageSlideCenter ? row?.imageSlideCenter : "",
+      imageSlideLeft: row?.imageSlideLeft ? row?.imageSlideLeft : "",
+      imageSlideRight: row?.imageSlideRight ? row?.imageSlideRight : "",
+      benefits: row?.benefits?.map((e) => ({
+        imageBenefits: e?.imageBenefits,
+        key: e?.key,
+        subTitleBenefits: e?.subTitleBenefits,
+        subTitleBenefitsKH: e?.subTitleBenefitsKH,
+      })),
+      discriptionBenefitsList: row?.discriptionBenefitsList?.map((e) => ({
+        benefitsList: e?.benefitsList,
+        benefitsListKH: e?.benefitsListKH,
+        key: e?.key,
+      })),
+      mainProduct: row?.mainProduct,
+      newProduct: row?.newProduct === false ? true : false,
+      remark: "",
+    };
+    // console.log("newVales::", newVales);
+    updateProduct({
+      variables: {
         id: row?._id,
+        productEdit: {
+          ...newVales,
+        },
       },
     });
   };
 
   // console.log("checkButton::", checkButton);
+  // console.log("row::", row);
 
   const handleDelete = () => {
     deleteProduct({
@@ -161,7 +198,7 @@ export default function CleaningMaterailsRow({
       </TableCell>
       <TableCell className="body-title" width="10%">
         {row?.newProduct === true ? (
-          <CircleSharpIcon className="new-icon" />
+          <NewReleasesOutlinedIcon className="new-icon" />
         ) : (
           <CircleSharpIcon className="old-icon" />
         )}
@@ -177,21 +214,11 @@ export default function CleaningMaterailsRow({
         open={openMenu}
         onClose={handleCloseMenu}
       >
-        <MenuItem
-          onClick={() => {
-            setCheckButton("New");
-            handleMainProduct();
-          }}
-        >
+        <MenuItem onClick={handleNew}>
           <DataSaverOnIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
           New
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            setCheckButton("Main");
-            handleMainProduct();
-          }}
-        >
+        <MenuItem onClick={handleMainProduct}>
           <AutoFixHighIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
           Main product
         </MenuItem>

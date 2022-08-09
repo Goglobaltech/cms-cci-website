@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
-import InfoIcon from "@mui/icons-material/Info";
+import CircleSharpIcon from "@mui/icons-material/CircleSharp";
 
 //components
 import "./cosmeticsrow.scss";
@@ -58,10 +58,8 @@ export default function CosmeticsRow({
         if (updateProduct?.success === true) {
           setOpenSuccess(true);
           setSuccesstMessage(updateProduct?.message);
-          // setRefetch();
-          setTimeout(() => {
-            navigate("/cleaningmaterails");
-          }, 2000);
+          setRefetch();
+          handleCloseMenu();
         } else {
           setOpenError(true);
           setErrorMessage(updateProduct?.message);
@@ -95,13 +93,73 @@ export default function CosmeticsRow({
   });
 
   const handleMainProduct = () => {
+    const newVales = {
+      categoryId: row?.categoryId?._id,
+      title: row?.title,
+      titleKH: row?.titleKH,
+      discription: row?.discription,
+      discriptionKH: row?.discriptionKH,
+      imageSlideCenter: row?.imageSlideCenter ? row?.imageSlideCenter : "",
+      imageSlideLeft: row?.imageSlideLeft ? row?.imageSlideLeft : "",
+      imageSlideRight: row?.imageSlideRight ? row?.imageSlideRight : "",
+      benefits: row?.benefits?.map((e) => ({
+        imageBenefits: e?.imageBenefits,
+        key: e?.key,
+        subTitleBenefits: e?.subTitleBenefits,
+        subTitleBenefitsKH: e?.subTitleBenefitsKH,
+      })),
+      discriptionBenefitsList: row?.discriptionBenefitsList?.map((e) => ({
+        benefitsList: e?.benefitsList,
+        benefitsListKH: e?.benefitsListKH,
+        key: e?.key,
+      })),
+      mainProduct: row?.mainProduct === false ? true : false,
+      newProduct: row?.newProduct,
+      remark: "",
+    };
+    // console.log("newVales::", newVales);
     updateProduct({
       variables: {
-        productEdit: {
-          ...row,
-          mainProduct: true,
-        },
         id: row?._id,
+        productEdit: {
+          ...newVales,
+        },
+      },
+    });
+  };
+
+  const handleNew = () => {
+    const newVales = {
+      categoryId: row?.categoryId?._id,
+      title: row?.title,
+      titleKH: row?.titleKH,
+      discription: row?.discription,
+      discriptionKH: row?.discriptionKH,
+      imageSlideCenter: row?.imageSlideCenter ? row?.imageSlideCenter : "",
+      imageSlideLeft: row?.imageSlideLeft ? row?.imageSlideLeft : "",
+      imageSlideRight: row?.imageSlideRight ? row?.imageSlideRight : "",
+      benefits: row?.benefits?.map((e) => ({
+        imageBenefits: e?.imageBenefits,
+        key: e?.key,
+        subTitleBenefits: e?.subTitleBenefits,
+        subTitleBenefitsKH: e?.subTitleBenefitsKH,
+      })),
+      discriptionBenefitsList: row?.discriptionBenefitsList?.map((e) => ({
+        benefitsList: e?.benefitsList,
+        benefitsListKH: e?.benefitsListKH,
+        key: e?.key,
+      })),
+      mainProduct: row?.mainProduct,
+      newProduct: row?.newProduct === false ? true : false,
+      remark: "",
+    };
+    // console.log("newVales::", newVales);
+    updateProduct({
+      variables: {
+        id: row?._id,
+        productEdit: {
+          ...newVales,
+        },
       },
     });
   };
@@ -131,16 +189,16 @@ export default function CosmeticsRow({
       </TableCell>
       <TableCell className="body-title" width="10%">
         {row?.mainProduct === true ? (
-          <InfoIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
+          <CircleSharpIcon className="new-icon" />
         ) : (
-          <InfoIcon sx={{ fontSize: "20px", color: "#fc7e7f", mr: 1 }} />
+          <CircleSharpIcon className="old-icon" />
         )}
       </TableCell>
       <TableCell className="body-title" width="10%">
         {row?.newProduct === true ? (
-          <InfoIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
+          <CircleSharpIcon className="new-icon" />
         ) : (
-          <InfoIcon sx={{ fontSize: "20px", color: "#fc7e7f", mr: 1 }} />
+          <CircleSharpIcon className="old-icon" />
         )}
       </TableCell>
       <TableCell className="body-title-end" width="5%">
@@ -154,21 +212,11 @@ export default function CosmeticsRow({
         open={openMenu}
         onClose={handleCloseMenu}
       >
-        <MenuItem
-          onClick={() => {
-            toUpdate();
-            handleCloseMenu();
-          }}
-        >
+        <MenuItem onClick={handleNew}>
           <DataSaverOnIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
           New
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            toUpdate();
-            handleCloseMenu();
-          }}
-        >
+        <MenuItem onClick={handleMainProduct}>
           <AutoFixHighIcon sx={{ fontSize: "20px", color: "#7cdba8", mr: 1 }} />
           Main product
         </MenuItem>

@@ -12,6 +12,18 @@
         border: none;
         font-size: $font-size-body;
         font-family: $font-body;
+
+        .new-icon {
+            font-size: 20px;
+            color: $secondary-color;
+            margin-right: 10px;
+        }
+
+        .old-icon {
+            font-size: 20px;
+            color: $third-color;
+            margin-right: 10px;
+        }
     }
     .body-title-start {
         border-top-left-radius: 10px;
@@ -62,6 +74,18 @@
         border: none;
         font-size: $font-size-body;
         font-family: $font-body;
+
+        .new-icon {
+            font-size: 20px;
+            color: $secondary-color;
+            margin-right: 10px;
+        }
+
+        .old-icon {
+            font-size: 20px;
+            color: $third-color;
+            margin-right: 10px;
+        }
     }
     .body-title-start {
         border-top-left-radius: 10px;
