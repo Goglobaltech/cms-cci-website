@@ -1,0 +1,11 @@
+@import "../../themes.scss";
+
+.text-field {
+    .MuiOutlinedInput-input {
+        font-family: $font-body;
+    }
+    .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+        border-radius: 20px;
+        // border: none;
+    }
+}

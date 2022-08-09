@@ -1,0 +1,58 @@
+@import "../../themes.scss";
+
+.deleteform-dialog {
+    .MuiPaper-root {
+        border-radius: 15px !important;
+        width: 400px !important;
+        height: fit-content !important;
+    }
+
+    .title {
+        font-family: $font-title;
+        font-size: $font-title;
+        color: $primary-color;
+    }
+
+    .close-icon {
+        color: red;
+        cursor: pointer;
+    }
+
+    .box-form {
+        .field-title {
+            font-size: 14px;
+        }
+        .text-field {
+            .MuiOutlinedInput-input {
+                font-family: $font-body;
+            }
+            .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                // border-color: gray;
+                border-radius: 20px;
+                // border: none;
+            }
+        }
+    }
+    .action-button {
+        padding: 0px 18px 16px 18px;
+        width: 100%;
+        .btn-cencel {
+            width: 100%;
+            padding: 8px 40px;
+            border-radius: 20px;
+            background-color: $third-color;
+            color: #fff;
+            text-transform: none;
+            box-shadow: none;
+        }
+        .btn-delete {
+            width: 100%;
+            padding: 8px 40px;
+            border-radius: 20px;
+            background-color: $secondary-color;
+            color: #fff;
+            text-transform: none;
+            box-shadow: none;
+        }
+    }
+}

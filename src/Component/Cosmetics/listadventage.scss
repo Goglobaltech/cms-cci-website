@@ -1,0 +1,32 @@
+@import "../../themes.scss";
+
+.list-adventage {
+    .import-image {
+        width: 80px;
+        height: 80px;
+        box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+        -webkit-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+        -moz-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+    }
+    .text-field {
+        .MuiOutlinedInput-input {
+            font-family: $font-body;
+        }
+        .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+            border-radius: 20px;
+            box-shadow: rgba(105, 105, 105, 0.09) 0px 4px 12px;
+        }
+        .MuiFormHelperText-root {
+            color: red;
+        }
+    }
+    .delete-icon {
+        color: red;
+        margin-top: 38px !important;
+        cursor: pointer;
+
+        &:hover {
+            background-color: aliceblue;
+        }
+    }
+}

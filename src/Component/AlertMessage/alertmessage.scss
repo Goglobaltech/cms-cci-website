@@ -1,0 +1,19 @@
+@import "../../themes.scss";
+
+.alert-message {
+    .snackbar-alert {
+        margin-top: 10px;
+        border-radius: 20px;
+
+        .alert-success {
+            border-radius: 20px;
+            background-color: $secondary-color;
+            color: #fff;
+        }
+        .alert-error {
+            border-radius: 20px;
+            background-color: $third-color;
+            color: #fff;
+        }
+    }
+}

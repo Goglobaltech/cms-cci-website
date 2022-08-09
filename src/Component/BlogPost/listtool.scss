@@ -1,0 +1,27 @@
+@import "../../themes.scss";
+
+.list-tool {
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+
+    .tool-title {
+        text-align: center;
+        color: $primary-color;
+    }
+
+    .image-one {
+        width: 32vh;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .box-delete {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .delete-icon {
+            color: red;
+            cursor: pointer;
+        }
+    }
+}

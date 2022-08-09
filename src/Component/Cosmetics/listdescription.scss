@@ -1,0 +1,49 @@
+@import "../../themes.scss";
+
+.list-description {
+    .btn-text-field {
+        width: 100%;
+        border-radius: 20px;
+        font-family: $font-body;
+
+        .import-image {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        .title-textfield {
+            font-family: $font-title;
+            color: $primary-color;
+        }
+        .upload-image {
+            width: 100%;
+            height: 100px;
+            border: 1px solid gray;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            padding: 32px 0px;
+        }
+
+        .text-field {
+            .MuiOutlinedInput-input {
+                font-family: $font-body;
+            }
+            .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                // border-color: gray;
+                border-radius: 20px;
+                // border: none;
+            }
+        }
+    }
+    .delete-icon {
+        color: red;
+        margin-top: 90px !important;
+        cursor: pointer;
+
+        &:hover {
+            background-color: aliceblue;
+        }
+    }
+}

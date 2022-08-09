@@ -1,0 +1,69 @@
+@import "../themes.scss";
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+    background-image: $background-menu;
+
+    .container {
+        width: 100%;
+        height: 95%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .box-logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box-text {
+            display: flex;
+            justify-content: center;
+
+            .title {
+                color: #fff;
+                font-family: $font-title;
+            }
+
+            .sub-title {
+                color: #fff;
+                font-family: $font-body;
+            }
+        }
+
+        .box-login {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+
+            .stack-text-field {
+                .text-field {
+                    background-color: #fff;
+                    border-radius: 4px;
+                    width: 300px;
+                }
+
+                .icon {
+                    color: $primary-color;
+                }
+
+                .btn-sign-in {
+                    background-color: #fff;
+                    color: $primary-color;
+                    font-family: $font-title;
+                    font-size: $font-size-subtitle;
+                    width: 300px;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background-color: #7cdba8;
+                        transition: 0.3s;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@import "../../themes.scss";
+
+.list-adventage {
+    .import-image {
+        width: 80px;
+        height: 80px;
+    }
+    .text-field {
+        .MuiOutlinedInput-input {
+            font-family: $font-body;
+        }
+        .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+            border-radius: 20px;
+            border: none;
+        }
+        .MuiFormHelperText-root {
+            color: red;
+        }
+    }
+    .delete-icon {
+        color: red;
+        margin-top: 38px !important;
+        cursor: pointer;
+    }
+}

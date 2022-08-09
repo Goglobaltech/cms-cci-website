@@ -1,0 +1,229 @@
+@import "../../themes.scss";
+
+.create-blogpost {
+    // background-color: red;
+    .box-tabs {
+        display: flex;
+
+        .box-check {
+            width: 100%;
+            display: flex;
+            justify-content: stretch;
+
+            .btn-check {
+                // width: 20%;
+                padding: 8px 40px;
+                border-radius: 20px;
+                margin: 0px 10px;
+                background-color: $secondary-color;
+                color: #fff;
+                box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                -webkit-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                -moz-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                transition: 0.6s;
+
+                @include laptop {
+                    margin: 0px 20px;
+                    padding: 5px 0px;
+                    font-size: 14px;
+                    width: 150px;
+                }
+                @include tablet {
+                    margin: 0px 20px;
+                    padding: 5px 0px;
+                    font-size: 14px;
+                    width: 150px;
+                }
+
+                &:hover {
+                    transform: scale(1.05);
+                    transition: 0.4s;
+                }
+            }
+        }
+
+        .box-post {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+
+            .btn-post {
+                // width: 20%;
+                padding: 8px 40px;
+                border-radius: 20px;
+                background-color: $secondary-color;
+                color: #fff;
+                box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                -webkit-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                -moz-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+                transition: 0.6s;
+
+                @include tablet {
+                    margin: 0px 20px;
+                    padding: 8px 0px;
+                    font-size: 14px;
+                    width: 150px;
+                }
+
+                &:hover {
+                    transform: scale(1.02);
+                    transition: 0.4s;
+                }
+            }
+        }
+    }
+    .slash {
+        width: 4px;
+        height: 40px;
+        background-color: $primary-color;
+    }
+    .page-title {
+        color: $primary-color;
+        font-size: 22px;
+        font-family: $font-title;
+        cursor: pointer;
+    }
+
+    .grid-btn {
+        display: flex;
+        justify-content: right;
+        .btn-add {
+            background-color: $secondary-color;
+            color: #fff;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 8px 20px;
+            box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+        }
+    }
+
+    .slash-button {
+        font-size: 21px;
+        color: $primary-color;
+        margin: 0px 10px;
+    }
+
+    .header-container {
+        .header-page {
+            width: 100%;
+            border-radius: 20px;
+            background-color: #fff;
+            padding: 20px;
+
+            .header-page-title {
+                text-align: center;
+                color: $primary-color;
+                font-family: $font-title;
+                font-size: 22px;
+                text-decoration: underline;
+            }
+
+            .btn-text-field {
+                width: 100%;
+                background-color: #fff;
+                border-radius: 20px;
+                font-family: $font-body;
+                padding: 0px 5px;
+
+                .title-textfield {
+                    font-family: $font-body;
+                    color: #ccc;
+                }
+
+                .box-container {
+                    display: flex;
+                    justify-content: center;
+
+                    .upload-image-box {
+                        width: 50%;
+                        height: 150px;
+                        border-radius: 20px;
+                        cursor: pointer;
+
+                        @include laptop {
+                            width: 50%;
+                        }
+                        @include tablet {
+                            width: 50%;
+                        }
+                    }
+                    .upload-image {
+                        width: 50%;
+                        height: 150px;
+                        border-radius: 20px;
+                        text-align: center;
+                        cursor: pointer;
+                        padding: 32px 0px;
+                        border: 1px solid rgb(238, 238, 238);
+                        box-shadow: 1px 2px 5px 0px rgba(148, 148, 148, 0.19);
+                        -webkit-box-shadow: 1px 3px 5px 0px rgba(148, 148, 148, 0.19);
+                        -moz-box-shadow: 1px 4px 5px 0px rgba(148, 148, 148, 0.19);
+                    }
+                }
+
+                .text-field {
+                    .MuiOutlinedInput-input {
+                        font-family: $font-body;
+                    }
+                    .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                        border-radius: 20px;
+                        border: none;
+                        box-shadow: rgba(105, 105, 105, 0.09) 0px 4px 12px;
+                    }
+                }
+            }
+        }
+        .preview-title {
+            text-align: center;
+            font-size: 22px;
+            color: $primary-color;
+            font-family: $font-title;
+            text-decoration: underline;
+            padding: 10px 0px;
+        }
+        .priview-page {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+            .top-container {
+                background-image: $background-menu;
+                border-radius: 20px 20px 0px 0px;
+                padding: 40px;
+
+                .products-title {
+                    color: #fff;
+                    height: 60px;
+                    background: rgba(0, 0, 0, 0.5);
+                    font-size: $font-size-title;
+                    font-family: $font-title;
+                    text-align: center;
+                }
+
+                .products-subtitle {
+                    margin-top: 20px;
+                    color: #fff;
+                    font-size: $font-size-body;
+                    font-family: $font-body;
+                    text-align: center;
+                }
+                .divider-bottom {
+                    margin-top: 30px;
+                    border-bottom: 1px solid #fff;
+                }
+            }
+            .bottom-container {
+                background-color: #fff;
+                border-radius: 0px 0px 20px 20px;
+                padding: 20px;
+
+                .bottom-title {
+                    text-align: center;
+                    font-size: $font-size-subtitle;
+                    font-family: $font-title;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

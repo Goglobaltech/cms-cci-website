@@ -1,0 +1,114 @@
+@import "../../themes.scss";
+
+.body-row {
+    background-color: #fff;
+    &:hover {
+        background-color: rgba(192, 192, 192, 0.158);
+        cursor: pointer;
+        transition: ease-out 0.3s;
+    }
+
+    .body-title {
+        border: none;
+        font-size: $font-size-body;
+        font-family: $font-body;
+
+        @include mobile {
+            font-size: 12px;
+        }
+
+        .image {
+            width: 40%;
+        }
+    }
+    .body-title-start {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border: none;
+        font-size: $font-size-body;
+        font-family: $font-body;
+
+        @include mobile {
+            font-size: 12px;
+        }
+    }
+    .body-title-end {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: none;
+
+        .btn-icon {
+            height: 30px;
+            width: 20px;
+            .more-icon {
+                font-size: 26px;
+                color: $primary-color;
+
+                @include mobile {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+    .edit-icon {
+        color: $secondary-color;
+    }
+    .delete-icon {
+        color: $third-color;
+    }
+}
+.body-row-gray {
+    // background-color: rgba(0, 0, 0, 0.269);
+    border-radius: 20px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(192, 192, 192, 0.158);
+        cursor: pointer;
+        transition: ease-out 0.3s;
+    }
+
+    .body-title {
+        border: none;
+        font-size: $font-size-body;
+        font-family: $font-body;
+
+        @include mobile {
+            font-size: 12px;
+        }
+
+        .image {
+            width: 40%;
+        }
+    }
+    .body-title-start {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border: none;
+        font-size: $font-size-body;
+        font-family: $font-body;
+
+        @include mobile {
+            font-size: 12px;
+        }
+    }
+    .body-title-end {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: none;
+
+        .btn-icon {
+            height: 30px;
+
+            .more-icon {
+                font-size: 26px;
+                color: $primary-color;
+
+                @include mobile {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}

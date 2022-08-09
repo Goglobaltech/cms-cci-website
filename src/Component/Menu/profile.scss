@@ -1,0 +1,11 @@
+@import "../../themes.scss";
+
+.top-profile {
+    .button-admin {
+        .admin-title {
+            color: $primary-color;
+            text-transform: none;
+            margin-right: 10px;
+        }
+    }
+}

@@ -1,0 +1,170 @@
+@import "../themes.scss";
+
+.media-page {
+    .slash {
+        width: 4px;
+        height: 40px;
+        background-color: $primary-color;
+    }
+    .page-title {
+        color: $primary-color;
+        font-size: 22px;
+        font-family: $font-title;
+    }
+
+    .grid-btn {
+        display: flex;
+        justify-content: right;
+        .btn-add {
+            background-color: $secondary-color;
+            color: #fff;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 0px 20px;
+            box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            -webkit-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            -moz-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            transition: 0.6s;
+
+            &:hover {
+                transition: 0.4s;
+                transform: scale(1.02);
+            }
+
+            .MuiButton-startIcon {
+                margin-right: 0px !important;
+                margin-left: 0px !important;
+            }
+
+            .style-add {
+                color: gray;
+                font-family: $font-body;
+                font-weight: bold;
+                margin: 0px 5px 0px 5px;
+            }
+            .btn-text {
+                color: #fff;
+                font-weight: bold;
+                margin: 0px 5px 0px 5px;
+                font-family: $font-body;
+            }
+        }
+    }
+
+    .btn-search {
+        border-radius: 20px !important;
+
+        .btn-text-field {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 20px;
+            font-family: $font-body;
+            padding: 0px 5px;
+            box-shadow: rgba(105, 105, 105, 0.09) 0px 4px 12px;
+
+            .text-field {
+                .MuiOutlinedInput-input {
+                    color: black !important;
+                    font-family: $font-body;
+                }
+                .MuiInputLabel-root {
+                    color: black !important;
+                }
+                .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                    border: none;
+                }
+                :hover .MuiOutlinedInput-input {
+                    color: #fff;
+                    font-family: $font-body;
+                }
+                :hover .MuiInputLabel-root {
+                    color: black;
+                }
+                :hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                }
+                .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input {
+                    color: black;
+                }
+                .MuiInputLabel-root.Mui-focused {
+                    color: black;
+                    font-family: $font-body;
+                }
+                .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                }
+            }
+        }
+    }
+    .btn-filter {
+        width: 18%;
+        border-radius: 5px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .form-controll-select {
+            .MuiOutlinedInput-input {
+                color: black !important;
+                font-family: $font-body;
+            }
+            .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            :hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            .MuiMenuItem-gutters {
+                font-family: $font-body;
+            }
+        }
+    }
+
+    .container-cosmetic {
+        margin-top: 20px;
+
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 8px;
+
+            .edit-icon {
+                // color: $secondary-color;
+                color: red;
+            }
+            .delete-icon {
+                // color: $third-color;
+                color: blue;
+            }
+
+            .header-row {
+                .header-title {
+                    padding: 10px;
+                    border: none;
+                    font-size: $font-size-subtitle;
+                    font-family: $font-title;
+                    color: $primary-color;
+
+                    @include mobile {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+    .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+        background-color: $secondary-color;
+        color: #fff;
+    }
+    .next-btn {
+        font-size: 20px;
+    }
+}

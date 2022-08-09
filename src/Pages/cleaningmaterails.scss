@@ -1,0 +1,272 @@
+@import "../themes.scss";
+
+.products-page {
+    .btn-filter {
+        .MuiAutocomplete-option {
+            font-family: $font-body !important;
+            // color: black !important;
+            font-weight: bold;
+        }
+    }
+
+    .slash {
+        width: 4px;
+        height: 40px;
+        background-color: $primary-color;
+    }
+    .page-title {
+        color: $primary-color;
+        font-size: 22px;
+        font-family: $font-title;
+    }
+
+    .grid-btn {
+        display: flex;
+        justify-content: right;
+
+        @include mobile {
+            margin: 0px 18px;
+        }
+        @include mobile-small {
+            margin: 0px 18px;
+        }
+
+        .btn-add {
+            background-color: $secondary-color;
+            color: #fff;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 8px 20px;
+            // box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+            box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            -webkit-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            -moz-box-shadow: 1px 4px 5px 0px rgba(39, 39, 39, 0.19);
+            transition: 0.6s;
+
+            @include mobile {
+                padding: 5px 18px;
+            }
+            @include mobile-small {
+                padding: 5px 18px;
+            }
+
+            &:hover {
+                transition: 0.4s;
+                transform: scale(1.02);
+            }
+
+            .MuiButton-startIcon {
+                margin-right: 0px !important;
+                margin-left: 0px !important;
+            }
+
+            .style-add {
+                color: gray;
+                font-family: $font-body;
+                font-weight: bold;
+                margin: 0px 5px 0px 5px;
+            }
+            .btn-text {
+                color: #fff;
+                font-weight: bold;
+                margin: 0px 5px 0px 5px;
+                font-family: $font-body;
+            }
+        }
+    }
+
+    .btn-search {
+        border-radius: 20px !important;
+
+        .btn-text-field {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 20px;
+            font-family: $font-body;
+            padding: 0px 5px;
+            // box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+            box-shadow: rgba(105, 105, 105, 0.09) 0px 4px 12px;
+
+            .text-field {
+                .MuiOutlinedInput-input {
+                    color: black !important;
+                    font-family: $font-body;
+                }
+                .MuiInputLabel-root {
+                    color: black !important;
+                }
+                .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                    border: none;
+                }
+                :hover .MuiOutlinedInput-input {
+                    color: #fff;
+                    font-family: $font-body;
+                }
+                :hover .MuiInputLabel-root {
+                    color: black;
+                }
+                :hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                }
+                .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input {
+                    color: black;
+                }
+                .MuiInputLabel-root.Mui-focused {
+                    color: black;
+                    font-family: $font-body;
+                }
+                .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+                    border-color: #fff;
+                }
+            }
+        }
+    }
+    .btn-filter {
+        width: 18%;
+        border-radius: 5px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .form-controll-select {
+            .MuiOutlinedInput-input {
+                color: black !important;
+                font-family: $font-body;
+            }
+            .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            :hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+                border-color: #fff;
+            }
+            .MuiMenuItem-gutters {
+                font-family: $font-body;
+            }
+        }
+    }
+
+    .container {
+        margin-top: 20px;
+
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 8px;
+
+            .header-row {
+                .header-title {
+                    padding: 10px;
+                    border: none;
+                    font-size: $font-size-subtitle;
+                    font-family: $font-title;
+                    color: $primary-color;
+                }
+            }
+
+            .body {
+                box-shadow: none;
+                border-radius: 20px;
+
+                .body-row {
+                    background-color: #fff;
+                    border-radius: 20px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(192, 192, 192, 0.158);
+                        cursor: pointer;
+                        transition: ease-out 0.3s;
+                    }
+
+                    .body-title {
+                        padding: 10px;
+                        border: none;
+                        font-size: $font-body;
+                        font-family: $font-body;
+                        font-weight: bold;
+                    }
+                    .body-title-start {
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                        border: none;
+                    }
+                    .body-title-end {
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        border: none;
+
+                        .btn-icon {
+                            height: 30px;
+                            width: 20px;
+                            .more-icon {
+                                font-size: 26px;
+                                color: $primary-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .body-odd {
+                box-shadow: none;
+                border-radius: 20px;
+
+                .body-row {
+                    background-color: rgba(121, 152, 218, 0.269);
+                    border-radius: 20px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(192, 192, 192, 0.158);
+                        cursor: pointer;
+                        transition: ease-out 0.3s;
+                    }
+
+                    .body-title {
+                        padding: 10px;
+                        border: none;
+                        font-size: $font-body;
+                        font-family: $font-body;
+                        font-weight: bold;
+
+                        @include mobile {
+                            font-size: 18px;
+                        }
+                    }
+                    .body-title-start {
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                        border: none;
+                    }
+                    .body-title-end {
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        border: none;
+                        .btn-icon {
+                            height: 30px;
+                            .more-icon {
+                                font-size: 26px;
+                                color: $primary-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+        background-color: $secondary-color;
+        color: #fff;
+    }
+    .next-btn {
+        font-size: 20px;
+    }
+}
