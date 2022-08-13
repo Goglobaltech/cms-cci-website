@@ -102,7 +102,7 @@ export default function UpdatePortfolioEng({
           allRows += `<span class="Subtitle">` + element.text + "</span>";
         }
         if (element.check === "Description") {
-          allRows += "<span>" + element.text + "</span>";
+          allRows += `<span class="description">` + element.text + "</span>";
         }
         if (element.check === "List") {
           allRows +=
@@ -346,8 +346,8 @@ export default function UpdatePortfolioEng({
                           <>
                             <img
                               src={
-                                i.text !== "AddImage"
-                                  ? `${i.text}`
+                                i.img
+                                  ? `${i.img}`
                                   : "https://rus-traktor.ru/upload/iblock/6e3/6e3f5afeaf9b58a1cfd954f0aeb24d0a.jpg"
                               }
                               style={{

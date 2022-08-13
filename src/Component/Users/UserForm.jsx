@@ -28,12 +28,16 @@ import { useMutation } from "@apollo/client";
 import { styled } from "@mui/material/styles";
 import "./userform.scss";
 import { CREATE_USERS } from "../../Schema/user";
+
 // UPDATE_USER
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import ListImage from "../../Component/Dynamic/ListImage";
 import { SelectRole } from "../Dynamic/Function";
+import { InputAdornment } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function UserForm({
   modalTitle,
@@ -51,6 +55,10 @@ export default function UserForm({
   // console.log("editData::", editData);
   const [checked, setChecked] = useState(true);
   const [roleVal, setRoleVal] = useState({ id: "", label: "" });
+
+  // hide password hook
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   //upload image
   const [imageFile, setImageFile] = useState();
@@ -96,8 +104,6 @@ export default function UserForm({
     dob: Yup.date(),
     active: Yup.string(),
   });
-
-  // console.log("AddUser::", AddUser);
 
   // Use formik
   const formik = useFormik({
@@ -205,7 +211,6 @@ export default function UserForm({
     <Dialog
       fullScreen={fullScreen}
       open={open}
-      // onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
       className="users-dialog"
     >
@@ -255,10 +260,16 @@ export default function UserForm({
                       />
                     </Modal>
                   </Box>
+
+
+
                   <Typography className="field-title-image">
                     Profile Image
                   </Typography>
                 </Grid>
+
+
+                
                 <Grid item container spacing={3}>
                   <Grid item xs={6}>
                     <Typography className="field-title">First Name</Typography>
@@ -362,12 +373,27 @@ export default function UserForm({
                     <TextField
                       className="text-field"
                       size="small"
-                      type="password"
+                      type={show ? "text" : "password"}
+                      autoComplete="current-password"
                       fullWidth
                       placeholder="password"
                       {...getFieldProps("password")}
                       error={Boolean(touched.password && errors.password)}
                       helperText={touched.password && errors.password}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment
+                            position="start"
+                            onClick={handleClick}
+                          >
+                            {show ? (
+                              <VisibilityIcon sx={{ cursor: "pointer" }} />
+                            ) : (
+                              <VisibilityOffIcon sx={{ cursor: "pointer" }} />
+                            )}
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
 

@@ -2,6 +2,16 @@
 
 .create-portfolio {
     // background-color: red;
+
+    .css-i4bv87-MuiSvgIcon-root {
+        color: red;
+        cursor: pointer;
+
+        &:hover {
+            background-color: aliceblue;
+        }
+    }
+
     .box-tabs {
         display: flex;
 

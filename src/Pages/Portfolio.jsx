@@ -112,7 +112,7 @@ export default function Portfolio() {
           <Table className="table" aria-label="simple table">
             <TableHead>
               <TableRow className="header-row">
-                <TableCell className="header-title">N.0</TableCell>
+                <TableCell className="header-title">N&deg;</TableCell>
                 <TableCell className="header-title">Title</TableCell>
                 <TableCell className="header-title">Description</TableCell>
                 <TableCell className="header-title" align="center"></TableCell>

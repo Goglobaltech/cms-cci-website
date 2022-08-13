@@ -126,7 +126,7 @@ export default function Media() {
           <Table className="table" aria-label="simple table">
             <TableHead>
               <TableRow className="header-row">
-                <TableCell className="header-title">N.0</TableCell>
+                <TableCell className="header-title">N°</TableCell>
                 <TableCell className="header-title">Image</TableCell>
                 <TableCell className="header-title">Title</TableCell>
                 <TableCell className="header-title">Image type</TableCell>

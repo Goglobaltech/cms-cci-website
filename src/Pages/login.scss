@@ -39,6 +39,15 @@
             margin-top: 10px;
 
             .stack-text-field {
+                .forgot {
+                    color: #fff;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: #7cdba8;
+                    }
+                }
+
                 .text-field {
                     background-color: #fff;
                     border-radius: 4px;

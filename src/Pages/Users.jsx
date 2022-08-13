@@ -74,7 +74,7 @@ export default function Users() {
           <Box className="slash" />
         </Stack>
         <Stack direction="column" justifyContent="center">
-          <Typography className="page-title">អ្នកប្រើប្រាស់</Typography>
+          <Typography className="page-title">Users</Typography>
         </Stack>
       </Stack>
 
@@ -124,7 +124,7 @@ export default function Users() {
           <Table className="table" aria-label="simple table">
             <TableHead>
               <TableRow className="header-row">
-                <TableCell className="header-title">N.0</TableCell>
+                <TableCell className="header-title">N&deg;</TableCell>
                 <TableCell className="header-title">Full Name</TableCell>
                 <TableCell className="header-title">Phone Number</TableCell>
                 <TableCell className="header-title">Email</TableCell>
@@ -151,6 +151,7 @@ export default function Users() {
           </Table>
         </TableContainer>
       </Box>
+
       <Stack direction="row" justifyContent="right" spacing={1} sx={{ mt: 1 }}>
         <IconButton
           disabled={tableData?.paginator?.prev === null ? true : false}
@@ -174,6 +175,7 @@ export default function Users() {
           <ArrowForwardIosIcon className="next-btn" />
         </IconButton>
       </Stack>
+
       <AlertMessage
         setOpenSuccess={setOpenSuccess}
         setOpenError={setOpenError}

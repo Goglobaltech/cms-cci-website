@@ -268,8 +268,8 @@ export default function PortfolioKh({
                           <>
                             <img
                               src={
-                                i.text !== "AddImage"
-                                  ? `${i.text}`
+                                i.img
+                                  ? `${i.img}`
                                   : "https://rus-traktor.ru/upload/iblock/6e3/6e3f5afeaf9b58a1cfd954f0aeb24d0a.jpg"
                               }
                               style={{

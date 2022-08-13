@@ -120,7 +120,7 @@ export default function MaterailsCategory() {
           <Table className="table" aria-label="simple table">
             <TableHead>
               <TableRow className="header-row">
-                <TableCell className="header-title">N.0</TableCell>
+                <TableCell className="header-title">N°</TableCell>
                 <TableCell className="header-title">Category name</TableCell>
                 <TableCell className="header-title">Type category</TableCell>
                 <TableCell className="header-title">Remark</TableCell>

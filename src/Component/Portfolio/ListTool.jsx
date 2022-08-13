@@ -53,6 +53,48 @@ export default function ListTool(props) {
         </Box>
       );
     }
+    // if (item?.check === "LinkResource") {
+    //   return (
+    //     <Box sx={{ marginTop: "20px" }}>
+    //       <Card className="list-tool" key={item?.key}>
+    //         <CardHeader title={`${item?.check}`} />
+    //         <CardContent>
+    //           <Stack direction="row">
+    //             <Stack direction="column" sx={{ width: "100%" }}>
+    //               <Input
+    //                 multiline
+    //                 sx={{ width: "90%", fontFamily: "Khmer Os Siemreap" }}
+    //                 type="text"
+    //                 id={item?.key}
+    //                 value={item?.text}
+    //                 onChange={(e) => {
+    //                   props.setUpdate(e.target.value, item?.key);
+    //                 }}
+    //               />
+    //               <Input
+    //                 multiline
+    //                 sx={{ width: "90%", fontFamily: "Khmer Os Siemreap" }}
+    //                 type="text"
+    //                 id={item?.key}
+    //                 value={item?.text}
+    //                 onChange={(e) => {
+    //                   props.setUpdate(e.target.value, item?.key);
+    //                 }}
+    //               />
+    //             </Stack>
+    //             <Box sx={{ flexGrow: 1 }} />
+    //             <DeleteOutlineIcon
+    //               onClick={() => {
+    //                 props.deleteItem(item?.key);
+    //               }}
+    //               className="delete-icon"
+    //             />
+    //           </Stack>
+    //         </CardContent>
+    //       </Card>
+    //     </Box>
+    //   );
+    // }
     if (item?.check === "ImageOneLayout") {
       return (
         <Box sx={{ marginTop: "20px" }}>

@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Settings from "@mui/icons-material/Settings";
@@ -23,13 +23,17 @@ import { GET_USER_LOGIN } from "../../Schema/user";
 import "./profile.scss";
 
 export default function Profile() {
-  const { data: dataUserLogin } = useQuery(GET_USER_LOGIN);
+  const [userData, setUserData] = useState()
+  const { error, data, refetch } = useQuery(GET_USER_LOGIN, {
+    onCompleted: ({ getUserLogin }) => {
+      setUserData(getUserLogin);
+      // console.log("getUserLogin::", getUserLogin);
+    },
 
-  // useEffect(() => {
-  //   if (dataUserLogin) {
-  //     console.log("test::", dataUserLogin);
-  //   }
-  // }, [dataUserLogin]);
+    onError:(error) => {
+      console.log("error::", error.message)
+    }
+  });
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -58,12 +62,12 @@ export default function Profile() {
       <IconButton>
         <Avatar
           alt="Travis Howard"
-          src="https://1409791524.rsc.cdn77.org/data/images/full/570458/bts-v.jpg"
+          src={ userData ? `${userData?.profileImage}` : "https://1409791524.rsc.cdn77.org/data/images/full/570458/bts-v.jpg"}
         />
       </IconButton>
 
       <Button onClick={handleClick} className="button-admin">
-        <Typography className="admin-title">Administator</Typography>
+        <Typography className="admin-title">{userData?.firstName+" "+userData?.lastName}</Typography>
         {open ? (
           <ExpandLess sx={{ color: "#092453" }} />
         ) : (
@@ -106,13 +110,13 @@ export default function Profile() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
+        {/* <MenuItem>
           <Avatar /> Profile
         </MenuItem>
         <MenuItem>
           <Avatar /> My account
-        </MenuItem>
-        <Divider />
+        </MenuItem> */}
+        {/* <Divider />  */}
         <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />{" "}

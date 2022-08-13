@@ -8,6 +8,8 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { useFormik, Form, FormikProvider } from "formik";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -32,6 +34,10 @@ export default function Login() {
   const [openError, setOpenError] = useState(false);
   const auth = getAuth(app);
   // console.log("auth::", auth)
+
+  // hide password hook
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email!").required("Required"),
@@ -128,9 +134,10 @@ export default function Login() {
                   />
                   <TextField
                     className="text-field"
-                    type="password"
+                    type={show ? "text" : "password"}
                     size="small"
                     placeholder="password"
+                    autoComplete="current-password"
                     {...getFieldProps("password")}
                     error={Boolean(touched.password && errors.password)}
                     helperText={touched.password && errors.password}
@@ -138,6 +145,16 @@ export default function Login() {
                       startAdornment: (
                         <InputAdornment position="start">
                           <HttpsOutlinedIcon className="icon" />
+                        </InputAdornment>
+                      ),
+
+                      endAdornment: (
+                        <InputAdornment position="start" onClick={handleClick}>
+                          {show ? (
+                            <VisibilityIcon sx={{ cursor: "pointer" }} />
+                          ) : (
+                            <VisibilityOffIcon sx={{ cursor: "pointer" }} />
+                          )}
                         </InputAdornment>
                       ),
                     }}
@@ -149,8 +166,7 @@ export default function Login() {
                     <Typography
                       variant="subtitle2"
                       align="right"
-                      color="#fff"
-                      fontWeight="bold"
+                      className="forgot"
                     >
                       Are you forgot password?
                     </Typography>

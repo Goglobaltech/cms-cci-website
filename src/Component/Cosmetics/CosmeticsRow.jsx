@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, TableCell, TableRow, Menu, MenuItem } from "@mui/material";
+import { Button, TableCell, TableRow, Menu, MenuItem, Box } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { useMutation } from "@apollo/client";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -189,16 +189,20 @@ export default function CosmeticsRow({
       </TableCell>
       <TableCell className="body-title" width="10%">
         {row?.mainProduct === true ? (
-          <CircleSharpIcon className="new-icon" />
+          // <CircleSharpIcon className="new-icon" />
+          <Box className="new-active">Main</Box>
         ) : (
-          <CircleSharpIcon className="old-icon" />
+          // <CircleSharpIcon className="old-icon" />
+          <Box className="main-active">Usual</Box>
         )}
       </TableCell>
       <TableCell className="body-title" width="10%">
         {row?.newProduct === true ? (
-          <CircleSharpIcon className="new-icon" />
+          // <CircleSharpIcon className="new-icon" />
+          <Box className="new-active">New</Box>
         ) : (
-          <CircleSharpIcon className="old-icon" />
+          // <CircleSharpIcon className="old-icon" />
+          <Box className="main-active">Aged</Box>
         )}
       </TableCell>
       <TableCell className="body-title-end" width="5%">

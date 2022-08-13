@@ -115,7 +115,7 @@ export default function CleaningMaterails() {
           <Table className="table" aria-label="simple table">
             <TableHead>
               <TableRow className="header-row">
-                <TableCell className="header-title">N.0</TableCell>
+                <TableCell className="header-title">N°</TableCell>
                 <TableCell className="header-title">Title</TableCell>
                 <TableCell className="header-title">Description</TableCell>
                 <TableCell className="header-title">Main</TableCell>

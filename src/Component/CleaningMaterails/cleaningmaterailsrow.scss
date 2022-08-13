@@ -13,20 +13,51 @@
         font-size: $font-size-body;
         font-family: $font-body;
 
-        .new-icon {
-            font-size: 20px;
-            color: $secondary-color;
-            margin-right: 10px;
+        // .new-icon {
+        //     font-size: 20px;
+        //     color: $secondary-color;
+        //     margin-right: 10px;
+        // }
+
+        .new-active {
+            background-color: $secondary-color;
+            color: #fff;
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+
+            &:hover {
+                background-color: rgb(139, 139, 139);
+            }
         }
 
-        .old-icon {
-            font-size: 20px;
-            color: $third-color;
-            margin-right: 10px;
+        // .old-icon {
+        //     font-size: 20px;
+        //     color: $third-color;
+        //     margin-right: 10px;
+        // }
+
+        .main-active {
+            background-color: $third-color;
+            color: #fff;
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            &:hover {
+                background-color: rgb(139, 139, 139);
+            }
         }
 
         @include mobile {
             font-size: 10px;
+        }
+        @include tablet {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 150px;
         }
     }
 
@@ -65,7 +96,6 @@
 }
 
 .body-row-gray {
-    // background-color: rgba(121, 152, 218, 0.269);
     border-radius: 20px;
     cursor: pointer;
 
@@ -80,20 +110,50 @@
         font-size: $font-size-body;
         font-family: $font-body;
 
-        .new-icon {
-            font-size: 20px;
-            color: $secondary-color;
-            margin-right: 10px;
+        // .new-icon {
+        //     font-size: 20px;
+        //     color: $secondary-color;
+        //     margin-right: 10px;
+        // }
+
+        .new-active {
+            background-color:  $secondary-color;
+            color: #fff;
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            &:hover {
+                background-color: rgb(139, 139, 139);
+            }
         }
 
-        .old-icon {
-            font-size: 20px;
-            color: $third-color;
-            margin-right: 10px;
+        // .old-icon {
+        //     font-size: 20px;
+        //     color: $third-color;
+        //     margin-right: 10px;
+        // }
+
+        .main-active {
+            background-color: $third-color;
+            color: #fff;
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            &:hover {
+                background-color: rgb(139, 139, 139);
+            }
         }
 
         @include mobile {
             font-size: 12px;
+        }
+        @include tablet {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 150px;
         }
     }
     .body-title-start {

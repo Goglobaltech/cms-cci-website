@@ -28,7 +28,7 @@ export default function Router() {
   //Apollo
   const { state } = useContext(AuthContext);
   const { user } = state;
-  // console.log("user::", user);
+  console.log("user::", user);
 
   const LoginPage = useRoutes([
     { path: "", element: <Login /> },
@@ -69,9 +69,9 @@ export default function Router() {
     { path: "login", element: <Login /> },
   ]);
 
-  if (user) {
+  // if (user) {
     return Content;
-  } else {
-    return LoginPage;
-  }
+  // } else {
+  //   return LoginPage;
+  // }
 }
