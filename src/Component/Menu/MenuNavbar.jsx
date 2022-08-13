@@ -287,25 +287,15 @@ export default function MenuNavbar({ open, handleDrawerClose }) {
           </ListItem>
         </List>
 
-        {/* <Box sx={{ flexGrow: 1 }}></Box>
+        <Box sx={{ flexGrow: 1 }}></Box>
 
         <List className="list-menu">
-          <ListItem
-            className={
-              location.pathname === "/login" ? "list-item-active" : "list-item"
-            }
-            disablePadding
+          <Typography
+            sx={{ color: "#fff", textAlign: "center", fontSize: "14px" }}
           >
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              <ListItemButton className="list-item-button">
-                <ListItemIcon className="list-item-icon">
-                  <img src={LogoutIcon} style={{ width: "26px" }} />
-                </ListItemIcon>
-                <Typography className="list-item-text">Log out</Typography>
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        </List> */}
+            &copy; Copy right by CCI @ 2022
+          </Typography>
+        </List>
       </Drawer>
     </>
   );

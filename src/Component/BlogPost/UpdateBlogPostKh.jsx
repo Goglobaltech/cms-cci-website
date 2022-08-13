@@ -199,7 +199,7 @@ export default function BlogPostKh({
                           fullWidth
                           placeholder="ការពិពណ៌នា"
                           size="small"
-                          rows={3}
+                          rows={4}
                           multiline={true}
                           {...getFieldProps("discriptionKH")}
                           error={Boolean(
@@ -298,7 +298,7 @@ export default function BlogPostKh({
                               }
                               style={{
                                 width: "100%",
-                                height: "500px",
+                                height: "auto",
                               }}
                               alt="preview"
                             />

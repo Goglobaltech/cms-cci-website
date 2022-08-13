@@ -183,7 +183,7 @@ export default function PortfolioEng({
                           fullWidth
                           placeholder="description"
                           size="small"
-                          rows={3}
+                          rows={4}
                           multiline={true}
                           {...getFieldProps("discription")}
                           error={Boolean(
@@ -320,7 +320,7 @@ export default function PortfolioEng({
                               }
                               style={{
                                 width: "100%",
-                                height: "500px",
+                                height: "auto",
                               }}
                               alt="preview"
                             />
