@@ -17,6 +17,8 @@ export default function UpdatePortfolio() {
   const editData = location?.state?.row;
   // console.log("editData::", editData);
 
+  const [loading,setLoading] = React.useState(false);
+
   // Alert Message
   const [successMessage, setSuccesstMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -58,7 +60,7 @@ export default function UpdatePortfolio() {
     setCheckPage(false);
   };
 
-  const [updatePortfolio, { data, loading, error }] = useMutation(
+  const [updatePortfolio, { data, error }] = useMutation(
     UPDATE_PORTFOLIO,
     {
       onCompleted: ({ updatePortfolio }) => {
@@ -68,14 +70,16 @@ export default function UpdatePortfolio() {
           setSuccesstMessage(updatePortfolio?.message);
           setTimeout(() => {
             navigate("/portfolio");
+            setLoading(false);
           }, 2000);
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(updatePortfolio?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -85,6 +89,7 @@ export default function UpdatePortfolio() {
   // console.log("editData::", editData);
 
   const handleCreateBlog = () => {
+    setLoading(true);
     updatePortfolio({
       variables: {
         newInput: {
@@ -131,10 +136,17 @@ export default function UpdatePortfolio() {
             </Button>
           </Box>
           <Box className="box-post">
-            <Button className="btn-post" onClick={handleCreateBlog}>
-              Post
-              <TelegramIcon sx={{ marginLeft: "4px" }} />
-            </Button>
+              {
+                loading ?
+                  <Button className="btn-post">
+                    Loading...
+                  </Button>
+                :
+                  <Button className="btn-post" onClick={handleCreateBlog}>
+                    Post
+                    <TelegramIcon sx={{ marginLeft: "4px" }} />
+                  </Button>
+              }
           </Box>
         </Box>
 

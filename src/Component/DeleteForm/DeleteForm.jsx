@@ -11,6 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 
 export default function DeleteForm({
+  loading,
   handleDelete,
   modalTitle,
   handleClose,
@@ -53,9 +54,17 @@ export default function DeleteForm({
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button className="btn-delete" onClick={handleDelete}>
-                Delete
-              </Button>
+            {
+              loading ?
+                <Button className="btn-delete">
+                  Loading...
+                </Button>
+            :
+                <Button className="btn-delete" onClick={handleDelete}>
+                  Delete
+                </Button>     
+            }
+              
             </Grid>
           </Grid>
         </Box>

@@ -56,6 +56,8 @@ export default function UserForm({
   const [checked, setChecked] = useState(true);
   const [roleVal, setRoleVal] = useState({ id: "", label: "" });
 
+  const [loading,setLoading] = React.useState(false);
+
   // hide password hook
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -71,7 +73,7 @@ export default function UserForm({
   };
 
   // Create User
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USERS, {
+  const [createUser, { data, error }] = useMutation(CREATE_USERS, {
     onCompleted: ({ createUser }) => {
       // console.log("createUser::", createUser);
       if (createUser?.success === true) {
@@ -79,13 +81,15 @@ export default function UserForm({
         setSuccesstMessage(createUser?.message);
         setRefetch();
         handleClose();
+        setLoading(false);
       } else {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(createUser?.message);
       }
     },
-
     onError: (error) => {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -122,7 +126,8 @@ export default function UserForm({
 
     validationSchema: AddUser,
     onSubmit: (values) => {
-      console.log("values::", values);
+      // console.log("values::", values);
+      setLoading(true);
       createUser({
         variables: {
           newUser: {
@@ -424,9 +429,16 @@ export default function UserForm({
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button className="btn-create" onClick={handleSubmit}>
-                {editData ? "Edit" : "Create"}
-              </Button>
+              {
+                loading ?
+                  <Button className="btn-create" >
+                    Loading...
+                  </Button>
+              :
+                  <Button className="btn-create" onClick={handleSubmit}>
+                    {editData ? "Edit" : "Create"}
+                  </Button>
+              }
             </Grid>
           </Grid>
         </Box>

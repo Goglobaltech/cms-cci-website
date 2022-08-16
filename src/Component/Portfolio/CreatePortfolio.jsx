@@ -12,6 +12,8 @@ import PortfolioKh from "./PortfolioKh";
 
 export default function CreatePortfolio() {
   let navigate = useNavigate();
+
+  const [loading,setLoading] = React.useState(false);
   // Alert Message
   const [successMessage, setSuccesstMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -53,7 +55,7 @@ export default function CreatePortfolio() {
     setCheckPage(false);
   };
 
-  const [createPortfolio, { data, loading, error }] = useMutation(
+  const [createPortfolio, { data, error }] = useMutation(
     CREATE_PORTFOLIO,
     {
       onCompleted: ({ createPortfolio }) => {
@@ -63,14 +65,16 @@ export default function CreatePortfolio() {
           setSuccesstMessage(createPortfolio?.message);
           setTimeout(() => {
             navigate("/portfolio");
+            setLoading(false);
           }, 2000);
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(createPortfolio?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -78,13 +82,17 @@ export default function CreatePortfolio() {
   );
 
   const handleCreatePortfolio = () => {
+    setLoading(true)
     if (allEngData?.title === "") {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage("please input field title and description!");
     } else if (allEngData?.discription === "") {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage("please input field title and description!");
     } else if (allKhData?.titleKH === "") {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage("សូមបញ្ចូលចំណងជើង និងការពិពណ៌នា!");
     } else {
@@ -134,10 +142,17 @@ export default function CreatePortfolio() {
             </Button>
           </Box>
           <Box className="box-post">
-            <Button className="btn-post" onClick={handleCreatePortfolio}>
-              Post
-              <TelegramIcon sx={{ marginLeft: "4px" }} />
-            </Button>
+            {
+              loading ?
+                <Button className="btn-post">
+                    Loading...
+                </Button>
+            :
+                <Button className="btn-post" onClick={handleCreatePortfolio}>
+                    Post
+                    <TelegramIcon sx={{ marginLeft: "4px" }} />
+                </Button>
+            }
           </Box>
         </Box>
 

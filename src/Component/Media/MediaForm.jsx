@@ -45,6 +45,8 @@ export default function MediaForm({
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   let navigate = useNavigate();
 
+  const [loading,setLoading] = React.useState(false);
+
   // console.log("editData::", editData);
 
   // upload Image
@@ -106,23 +108,26 @@ export default function MediaForm({
       });
   };
 
-  const [createMedia, { data, loading, error }] = useMutation(CREATE_MEDIA, {
+  const [createMedia, { data, error }] = useMutation(CREATE_MEDIA, {
     onCompleted: ({ createMedia }) => {
       // console.log("createMedia::", createMedia);
       if (createMedia?.success === true) {
         setOpenSuccess(true);
         setSuccesstMessage(createMedia?.message);
-        setTimeout(() => {
+        setTimeout(() => {     
+          handleClose();     
           navigate(0);
+          setLoading(false)
         }, 1800);
-        handleClose();
+        
       } else {
+        setLoading(false)
         setOpenError(true);
         setErrorMessage(createMedia?.message);
       }
     },
-
     onError: (error) => {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -136,15 +141,17 @@ export default function MediaForm({
         setSuccesstMessage(updateMedia?.message);
         setTimeout(() => {
           navigate(0);
-        }, 1800);
-        handleClose();
+          handleClose();
+          setLoading(false)
+        }, 1800);        
       } else {
+        setLoading(false)
         setOpenError(true);
         setErrorMessage(updateMedia?.message);
       }
     },
-
     onError: (error) => {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -165,6 +172,8 @@ export default function MediaForm({
     validationSchema: AddMedia,
     onSubmit: (values) => {
       // console.log("imageFile::", imageFile);
+      setLoading(true);
+
       if (imageFile) {
         uploadImage(imageFile, values);
       } else {
@@ -313,9 +322,16 @@ export default function MediaForm({
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button className="btn-create" onClick={handleSubmit}>
-                {editData ? "Edit" : "Create"}
-              </Button>
+              {
+                loading ?
+                  <Button className="btn-create">
+                    Loading...
+                  </Button>
+              :
+                  <Button className="btn-create" onClick={handleSubmit}>
+                    {editData ? "Edit" : "Create"}
+                  </Button>
+              }
             </Grid>
           </Grid>
         </Box>

@@ -81,7 +81,7 @@ export default function Portfolio() {
         <Grid item xs={12} sm={6} md={4} className="btn-search">
           <Box className="btn-text-field">
             <TextField
-              // onChange={(e) => setKeyword(e.target.value)}
+              onChange={(e) => setKeyword(e.target.value)}
               className="text-field"
               fullWidth
               id="input-with-sx"

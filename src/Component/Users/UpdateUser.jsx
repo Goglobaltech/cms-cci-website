@@ -48,6 +48,9 @@ export default function UpdateUsers({
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [loading,setLoading] = React.useState(false);
+
   // console.log("editData::", editData);
   const [imageFile, setImageFile] = useState(null);
   const [checked, setChecked] = useState(true);
@@ -81,13 +84,15 @@ export default function UpdateUsers({
         setSuccesstMessage(updateUser?.message);
         setRefetch();
         handleClose();
+        setLoading(false);
       } else {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(updateUser?.message);
       }
     },
-
     onError: (error) => {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -119,6 +124,7 @@ export default function UpdateUsers({
     validationSchema: UpdateUser,
     onSubmit: (values) => {
       // console.log("values::", values);
+      setLoading(true);
       updateUser({
         variables: {
           newUser: {
@@ -384,9 +390,16 @@ export default function UpdateUsers({
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button className="btn-create" onClick={handleSubmit}>
-                {editData ? "Edit" : "Create"}
-              </Button>
+              {
+                loading ?
+                  <Button className="btn-create" >
+                      Loading...
+                  </Button>
+              :
+                  <Button className="btn-create" onClick={handleSubmit}>
+                    {editData ? "Edit" : "Create"}
+                  </Button>
+              }
             </Grid>
           </Grid>
         </Box>

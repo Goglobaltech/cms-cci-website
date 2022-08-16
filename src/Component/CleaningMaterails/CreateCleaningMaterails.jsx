@@ -31,6 +31,8 @@ export default function CreateCleaningMaterails() {
   const location = useLocation();
   const setRefetch = location.state;
 
+  const [loading,setLoading] = React.useState(false);
+
   const [categoryVal, setCategoryVal] = useState();
   //Image
   const [checkImage, setCheckImage] = useState("");
@@ -192,7 +194,7 @@ export default function CreateCleaningMaterails() {
     setDescriptionItem([...descriptionItem]);
   };
 
-  const [createProduct, { data, loading, error }] = useMutation(
+  const [createProduct, { data, error }] = useMutation(
     CREATE_PRODUCTS,
     {
       onCompleted: ({ createProduct }) => {
@@ -200,16 +202,20 @@ export default function CreateCleaningMaterails() {
         if (createProduct?.success === true) {
           setOpenSuccess(true);
           setSuccesstMessage(createProduct?.message);
-          setTimeout(() => {
+          setTimeout(() => {            
             navigate("/cleaningmaterails");
+            resetForm();
+            setLoading(false);
           }, 2000);
+          
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(createProduct?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -235,6 +241,7 @@ export default function CreateCleaningMaterails() {
 
     validationSchema: CreateProducts,
     onSubmit: (values) => {
+      setLoading(true);
       createProduct({
         variables: {
           newProduct: {
@@ -258,6 +265,7 @@ export default function CreateCleaningMaterails() {
     getFieldProps,
     setFieldValue,
     values,
+    resetForm
   } = formik;
 
   return (
@@ -492,10 +500,19 @@ export default function CreateCleaningMaterails() {
               </Grid>
               <Grid item xs={12} md={12} lg={8} xl={8}>
                 <Box className="box-post">
-                  <Button className="btn-post" type="submit">
-                    Post
-                    <TelegramIcon sx={{ marginLeft: "4px" }} />
-                  </Button>
+                {
+                  loading ?
+                    <Button className="btn-post">
+                      Loading...                      
+                    </Button>
+                :
+                    <Button className="btn-post" type="submit">
+                      Post
+                      <TelegramIcon sx={{ marginLeft: "4px" }} />
+                    </Button>
+                }
+                  
+
                 </Box>
 
                 <Typography className="preview-title">

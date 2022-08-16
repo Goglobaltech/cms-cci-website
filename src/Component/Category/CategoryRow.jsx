@@ -20,6 +20,9 @@ export default function CategoryRow({
   setSuccesstMessage,
   setErrorMessage,
 }) {
+
+  const [loading,setLoading] = React.useState(false);
+
   const [categoryId, setCategoryId] = useState("");
   const [editData, setEditData] = useState();
   //menu
@@ -51,7 +54,7 @@ export default function CategoryRow({
     setOpenDelete(false);
   };
 
-  const [deleteProductCategory, { data, loading, error }] = useMutation(
+  const [deleteProductCategory, { data , error }] = useMutation(
     DETETE_CATEGORY,
     {
       onCompleted: ({ deleteProductCategory }) => {
@@ -60,13 +63,15 @@ export default function CategoryRow({
           setSuccesstMessage(deleteProductCategory?.message);
           setRefetch();
           handleCloseDelete();
+          setLoading(false);
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(deleteProductCategory?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -74,12 +79,12 @@ export default function CategoryRow({
   );
 
   const handleDelete = () => {
+    setLoading(true);
     deleteProductCategory({
       variables: {
         id: categoryId,
       },
-    });
-    handleCloseDelete();
+    });    
   };
 
   return (
@@ -141,6 +146,7 @@ export default function CategoryRow({
       />
       <DeleteForm
         handleDelete={handleDelete}
+        loading={loading}
         open={openDelete}
         handleClose={handleCloseDelete}
         modalTitle={"Delete category"}

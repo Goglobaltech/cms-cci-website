@@ -11,7 +11,11 @@ import BlogPostKh from "./BlogPostKh";
 import { CREATE_BLOGPOST } from "../../Schema/blogpost";
 
 export default function CreateBlogPost() {
+  
   let navigate = useNavigate();
+
+  const [loading,setLoading] = React.useState(false);
+
   // Alert Message
   const [successMessage, setSuccesstMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -56,7 +60,7 @@ export default function CreateBlogPost() {
   // console.log("allEngData::", allEngData);
   // console.log("allKhData::", allKhData);
 
-  const [createBlog, { data, loading, error }] = useMutation(CREATE_BLOGPOST, {
+  const [createBlog, { data, error }] = useMutation(CREATE_BLOGPOST, {
     onCompleted: ({ createBlog }) => {
       // console.log("createBlog::", createBlog);
       if (createBlog?.success === true) {
@@ -64,13 +68,16 @@ export default function CreateBlogPost() {
         setSuccesstMessage(createBlog?.message);
         setTimeout(() => {
           navigate("/blogpost");
+          setLoading(false);
         }, 1000);
       } else {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(createBlog?.message);
       }
     },
     onError: (error) => {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -78,14 +85,18 @@ export default function CreateBlogPost() {
 
   // console.log("tsetes::", allEngData, allKhData);
   const handleCreateBlog = () => {
+    setLoading(true);
     // console.log("image::", image);
     if (allEngData?.title === "") {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage("please input field title and description!");
     } else if (allEngData?.discription === "") {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage("please input field title and description!");
     } else if (allKhData?.titleKH === "") {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage("សូមបញ្ចូលចំណងជើង និងការពិពណ៌នា!");
     } else {
@@ -135,10 +146,18 @@ export default function CreateBlogPost() {
             </Button>
           </Box>
           <Box className="box-post">
-            <Button className="btn-post" onClick={handleCreateBlog}>
-              Post
-              <TelegramIcon sx={{ marginLeft: "4px" }} />
-            </Button>
+            {
+              loading ?
+                <Button className="btn-post">
+                    Loading...
+                </Button>
+            :
+                <Button className="btn-post" onClick={handleCreateBlog}>
+                    Post
+                    <TelegramIcon sx={{ marginLeft: "4px" }} />
+                </Button>
+            }
+            
           </Box>
         </Box>
 

@@ -29,6 +29,9 @@ export default function CreateCosmetics() {
   let navigate = useNavigate();
   const location = useLocation();
   const setRefetch = location.state;
+
+  const [loading,setLoading] = React.useState(false);
+
   // console.log("setRefetch::", setRefetch);
   const [categoryVal, setCategoryVal] = useState();
   //Image
@@ -191,7 +194,7 @@ export default function CreateCosmetics() {
     setDescriptionItem([...descriptionItem]);
   };
 
-  const [createProduct, { data, loading, error }] = useMutation(
+  const [createProduct, { data, error }] = useMutation(
     CREATE_PRODUCTS,
     {
       onCompleted: ({ createProduct }) => {
@@ -201,14 +204,17 @@ export default function CreateCosmetics() {
           setSuccesstMessage(createProduct?.message);
           setTimeout(() => {
             navigate("/cosmetics");
+            resetForm();
+            setLoading(false);
           }, 2000);
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(createProduct?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -234,6 +240,7 @@ export default function CreateCosmetics() {
 
     validationSchema: CreateProducts,
     onSubmit: (values) => {
+      setLoading(true);
       createProduct({
         variables: {
           newProduct: {
@@ -257,6 +264,7 @@ export default function CreateCosmetics() {
     getFieldProps,
     setFieldValue,
     values,
+    resetForm
   } = formik;
 
   return (
@@ -486,10 +494,17 @@ export default function CreateCosmetics() {
               </Grid>
               <Grid item xs={12} md={12} lg={8} xl={8}>
                 <Box className="box-post">
-                  <Button className="btn-post" type="submit">
-                    Post
-                    <TelegramIcon sx={{ marginLeft: "4px" }} />
-                  </Button>
+                  {
+                    loading ? 
+                      <Button className="btn-post">
+                        Loading...
+                      </Button>
+                  :
+                      <Button className="btn-post" type="submit">
+                        Post
+                        <TelegramIcon sx={{ marginLeft: "4px" }} />
+                      </Button>
+                  }
                 </Box>
 
                 <Typography className="preview-title">

@@ -9,6 +9,7 @@ import {
   FormControl,
   Select,
   MenuItem,
+  FormHelperText,
 } from "@mui/material";
 import { useFormik, Form, FormikProvider } from "formik";
 import * as Yup from "yup";
@@ -40,7 +41,9 @@ export default function MediaForm({
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   // console.log("editData::", editData);
 
-  const [createProductCategory, { data, loading, error }] = useMutation(
+  const [loading,setLoading] = React.useState(false);
+
+  const [createProductCategory, { data, error }] = useMutation(
     CREATE_CATEGORY,
     {
       onCompleted: ({ createProductCategory }) => {
@@ -49,15 +52,18 @@ export default function MediaForm({
           setSuccesstMessage(createProductCategory?.message);
           setRefetch();
           handleClose();
+          resetForm();
+          setLoading(false)
         } else {
+          setLoading(false)
           setOpenError(true);
-          setErrorMessage(createProductCategory?.message);
+          setErrorMessage(createProductCategory?.message);          
         }
       },
-
       onError: (error) => {
         setOpenError(true);
         setErrorMessage(error.message);
+        setLoading(false)
       },
     }
   );
@@ -69,13 +75,17 @@ export default function MediaForm({
         setSuccesstMessage(updateProductCategory?.message);
         setRefetch();
         handleClose();
+        resetForm();
+        setLoading(false);
       } else {
+        setLoading(false)
         setOpenError(true);
         setErrorMessage(updateProductCategory?.message);
       }
     },
 
     onError: (error) => {
+      setLoading(false)
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -85,21 +95,21 @@ export default function MediaForm({
   const CreateCategory = Yup.object().shape({
     categoryName: Yup.string().required(),
     categoryNameKH: Yup.string().required(),
-    typeCategory: Yup.string(),
+    typeCategory: Yup.string().required(),
     remark: Yup.string(),
   });
 
   const formik = useFormik({
     initialValues: {
-      categoryName: editData?.categoryName !== "" ? editData?.categoryName : "",
-      categoryNameKH:
-        editData?.categoryNameKH !== "" ? editData?.categoryNameKH : "",
-      typeCategory: editData?.typeCategory !== "" ? editData?.typeCategory : "",
-      remark: editData?.remark !== "" ? editData?.remark : "",
+      categoryName: editData?.categoryName !== "" && editData?.categoryName !== undefined ? editData?.categoryName : "",
+      categoryNameKH: editData?.categoryNameKH !== ""  && editData?.categoryNameKH !== undefined ? editData?.categoryNameKH : "",
+      typeCategory: editData?.typeCategory !== "" && editData?.typeCategory !== undefined ? editData?.typeCategory : "",
+      remark: "",
     },
 
     validationSchema: CreateCategory,
     onSubmit: (values) => {
+      setLoading(true)
       if (editData) {
         updateProductCategory({
           variables: {
@@ -121,15 +131,14 @@ export default function MediaForm({
     },
   });
 
-  const { errors, touched, handleSubmit, getFieldProps, setFieldValue } =
-    formik;
+  const { errors, touched, handleSubmit, getFieldProps, setFieldValue , resetForm } = formik;
 
   useEffect(() => {
     if (editData) {
       setFieldValue("categoryName", editData?.categoryName);
       setFieldValue("categoryNameKH", editData?.categoryNameKH);
-      setFieldValue("typeCategory", editData?.typeCategory);
-      setFieldValue("remark", editData?.remark);
+      setFieldValue("typeCategory", editData?.typeCategory);      
+      setFieldValue("remark", editData?.remark !== null ? editData?.remark : "" );
     }
   }, [editData]);
 
@@ -200,13 +209,21 @@ export default function MediaForm({
                       size="small"
                       placeholder="select type"
                     >
-                      <Select {...getFieldProps("typeCategory")}>
-                        <MenuItem value="CleaningMaterails">
-                          CleaningMaterails
-                        </MenuItem>
+                      <Select 
+                          {...getFieldProps("typeCategory")}
+                          error={Boolean(touched.typeCategory && errors.typeCategory)}
+                          helperText={touched.typeCategory && errors.typeCategory}
+                      >
+                        <MenuItem value="CleaningMaterails">CleaningMaterails</MenuItem>
                         <MenuItem value="Cosmetics">Cosmetics</MenuItem>
                       </Select>
                     </FormControl>
+
+                    {!!errors.typeCategory &&   (
+                        <FormHelperText error id="outlined-adornment-email" sx={{ml:2}}>
+                            {errors.typeCategory}
+                        </FormHelperText>
+                    )}
                   </Grid>
 
                   <Grid item xs={12} className="sub-title">
@@ -217,6 +234,8 @@ export default function MediaForm({
                       fullWidth
                       placeholder="Discription"
                       {...getFieldProps("remark")}
+                      error={Boolean(touched.remark && errors.remark)}
+                      helperText={touched.remark && errors.remark}
                     />
                   </Grid>
                 </Grid>
@@ -234,9 +253,18 @@ export default function MediaForm({
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button className="btn-create" onClick={handleSubmit}>
-                {editData ? "Edit" : "Create"}
-              </Button>
+
+            {
+              loading ? 
+                <Button className="btn-create">
+                    Loading...
+                </Button>
+            :
+                <Button className="btn-create" onClick={handleSubmit}>
+                  {editData ? "Edit" : "Create"}
+                </Button>
+            }
+              
             </Grid>
           </Grid>
         </Box>

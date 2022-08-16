@@ -32,6 +32,8 @@ export default function UpdateCosmetics() {
   const editData = location?.state?.row;
   // console.log("editData::", editData);
 
+  const [loading,setLoading] = React.useState(false);
+
   //set category data
   const [categoryVal, setCategoryVal] = useState({});
   useEffect(() => {
@@ -221,7 +223,7 @@ export default function UpdateCosmetics() {
     setDescriptionItem([...descriptionItem]);
   };
 
-  const [updateProduct, { data: d, loading, error }] = useMutation(
+  const [updateProduct, { data: d, error }] = useMutation(
     UPDATE_PRODUCTS,
     {
       onCompleted: ({ updateProduct }) => {
@@ -231,14 +233,17 @@ export default function UpdateCosmetics() {
           setSuccesstMessage(updateProduct?.message);
           setTimeout(() => {
             navigate("/cosmetics");
+            setLoading(false);
+            resetForm();
           }, 2000);
         } else {
+          setLoading(false);
           setOpenError(true);
           setErrorMessage(updateProduct?.message);
         }
       },
-
       onError: (error) => {
+        setLoading(false);
         setOpenError(true);
         setErrorMessage(error.message);
       },
@@ -263,6 +268,7 @@ export default function UpdateCosmetics() {
     validationSchema: CreateProducts,
     onSubmit: (values) => {
       // console.log("benefitsItem::", benefitsItem);
+      setLoading(true);
       updateProduct({
         variables: {
           productEdit: {
@@ -293,6 +299,7 @@ export default function UpdateCosmetics() {
     getFieldProps,
     setFieldValue,
     values,
+    resetForm
   } = formik;
   // console.log("formik::", formik?.values);
   return (
@@ -552,10 +559,17 @@ export default function UpdateCosmetics() {
               </Grid>
               <Grid item xs={12} md={7} lg={8}>
                 <Box className="box-post">
-                  <Button className="btn-post" type="submit">
-                    Post
-                    <TelegramIcon sx={{ marginLeft: "4px" }} />
-                  </Button>
+                  {
+                    loading ?
+                      <Button className="btn-post">
+                          Loading...
+                      </Button>
+                  :
+                      <Button className="btn-post" type="submit">
+                          Post
+                          <TelegramIcon sx={{ marginLeft: "4px" }} />
+                      </Button>
+                  }
                 </Box>
 
                 <Typography className="preview-title">

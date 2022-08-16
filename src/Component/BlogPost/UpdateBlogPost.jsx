@@ -17,6 +17,8 @@ export default function UpdateBlogPost() {
   const editData = location?.state?.row;
   // console.log("editData::", editData);
 
+  const [loading,setLoading] = React.useState(false);
+
   // Alert Message
   const [successMessage, setSuccesstMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -59,7 +61,7 @@ export default function UpdateBlogPost() {
     setCheckPage(false);
   };
 
-  const [updateBlog, { data, loading, error }] = useMutation(UPDATE_BLOGPOST, {
+  const [updateBlog, { data, error }] = useMutation(UPDATE_BLOGPOST, {
     onCompleted: ({ updateBlog }) => {
       // console.log("updateBlog::", updateBlog);
       if (updateBlog?.success === true) {
@@ -68,14 +70,16 @@ export default function UpdateBlogPost() {
         // setRefetch();
         setTimeout(() => {
           navigate("/blogpost");
+          setLoading(false)
         }, 1000);
       } else {
+        setLoading(false)
         setOpenError(true);
         setErrorMessage(updateBlog?.message);
       }
     },
-
     onError: (error) => {
+      setLoading(false);
       setOpenError(true);
       setErrorMessage(error.message);
     },
@@ -83,6 +87,7 @@ export default function UpdateBlogPost() {
 
   const handleCreateBlog = () => {
     // console.log("blogData::", allEngData, allKhData);
+    setLoading(true);
     updateBlog({
       variables: {
         newInput: {
@@ -129,10 +134,17 @@ export default function UpdateBlogPost() {
             </Button>
           </Box>
           <Box className="box-post">
-            <Button className="btn-post" onClick={handleCreateBlog}>
-              Post
-              <TelegramIcon sx={{ marginLeft: "4px" }} />
-            </Button>
+              {
+                loading ?
+                  <Button className="btn-post">
+                    Loading...
+                  </Button>
+              :
+                  <Button className="btn-post" onClick={handleCreateBlog}>
+                    Post
+                    <TelegramIcon sx={{ marginLeft: "4px" }} />
+                  </Button>
+              }            
           </Box>
         </Box>
 
