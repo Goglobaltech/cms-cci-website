@@ -219,7 +219,7 @@ export default function MediaForm({
                       </Select>
                     </FormControl>
 
-                    {!!errors.typeCategory &&   (
+                    {!!errors.typeCategory && touched.typeCategory &&  (
                         <FormHelperText error id="outlined-adornment-email" sx={{ml:2}}>
                             {errors.typeCategory}
                         </FormHelperText>
