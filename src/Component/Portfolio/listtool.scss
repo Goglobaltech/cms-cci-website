@@ -14,10 +14,14 @@
         cursor: pointer;
     }
 
+    .delete-icon {
+        color: red !important;        
+    }
+
     .box-delete {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: right;
         align-items: center;
         .delete-icon {
             color: red;

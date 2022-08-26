@@ -86,12 +86,9 @@ export default function ListTool(props) {
                 <Box sx={{ flexGrow: 1 }} />
 
                 <Box className="box-delete">
-                  <DeleteOutlineIcon
-                    onClick={() => {
-                      props.deleteItem(item?.key);
-                    }}
-                    className="delete-icon"
-                  />
+                  <IconButton onClick={() => props.deleteItem(item?.key) }>
+                    <DeleteOutlineIcon   className="delete-icon" />
+                  </IconButton>
                 </Box>
               </Stack>
             </CardContent>
@@ -135,12 +132,9 @@ export default function ListTool(props) {
                 <Box sx={{ flexGrow: 1 }} />
 
                 <Box className="box-delete">
-                  <DeleteOutlineIcon
-                    onClick={() => {
-                      props.deleteItem(item?.key);
-                    }}
-                    className="delete-icon"
-                  />
+                  <IconButton onClick={() => props.deleteItem(item?.key) }>
+                    <DeleteOutlineIcon   className="delete-icon" />
+                  </IconButton>
                 </Box>
               </Stack>
             </CardContent>
