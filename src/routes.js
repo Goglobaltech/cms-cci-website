@@ -41,9 +41,9 @@ export default function Router() {
     {
       path: "/",
       element: <Layout to="/cleaningmaterails" />,
-      children: [
+      children: [        
+        { path: "/", element: <Navigate to="/category" /> },
         { path: "category", element: <Category /> },
-        { path: "/", element: <Navigate to="/cleaningmaterails" /> },
         { path: "cleaningmaterails", element: <CleaningMaterails /> },
         {
           path: "cleaningmaterails/createcleaningmaterails",
