@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import FlipMove from "react-flip-move";
-import { TextField, Modal, Button } from "@mui/material";
+import { TextField, Modal, Button, IconButton } from "@mui/material";
 import Card from "@mui/material/Card";
 import { Input, Stack, CardHeader, CardContent, Box } from "@mui/material";
 import ListImage from "../Dynamic/ListImage";
@@ -41,12 +41,9 @@ export default function ListTool(props) {
                   }}
                 />
                 <Box sx={{ flexGrow: 1 }} />
-                <DeleteOutlineIcon
-                  onClick={() => {
-                    props.deleteItem(item?.key);
-                  }}
-                  className="delete-icon"
-                />
+                <IconButton onClick={() => props.deleteItem(item?.key) }>
+                  <DeleteOutlineIcon   className="delete-icon" />
+                </IconButton>                
               </Stack>
             </CardContent>
           </Card>

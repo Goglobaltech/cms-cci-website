@@ -157,7 +157,7 @@ export default function ListImage({
             </Search>
           </Stack>
           <Box sx={{ flexGrow: 1 }}></Box>
-          <ClearIcon onClick={handleClose} className="close-icon" />
+          <ClearIcon onClick={handleClose} className="close-icon"/>
         </Stack>
       </DialogTitle>
 

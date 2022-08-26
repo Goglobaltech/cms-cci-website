@@ -3,6 +3,7 @@
 .list-tool {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 
+
     .tool-title {
         text-align: center;
         color: $primary-color;
@@ -14,14 +15,18 @@
         cursor: pointer;
     }
 
+    .delete-icon {
+        color: red !important;        
+    }
+
     .box-delete {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        .delete-icon {
-            color: red;
-            cursor: pointer;
-        }
+        cursor: pointer !important;
+        color: red !important;
+
+        
     }
 }
